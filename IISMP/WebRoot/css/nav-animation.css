@@ -1,0 +1,133 @@
+@CHARSET "UTF-8";
+#marker {
+  height: 4px;
+  background: #31B0D5 !important;
+  position: absolute;
+  bottom: -1px;
+  width: 60px;
+  z-index: 2;
+  -webkit-transition: all 0.35s;
+  -moz-transition: all 0.35s;
+  -ms-transition: all 0.35s;
+  transition: all 0.35s;
+}
+#line li:nth-child(0):hover ul div {
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+#line li:nth-child(0):hover ~ #marker {
+  -webkit-transform: translate(0px, 0);
+  -moz-transform: translate(0px, 0);
+  -ms-transform: translate(0px, 0);
+  transform: translate(0px, 0);
+}
+#line li:nth-child(1):hover ul div {
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+#line li:nth-child(1):hover ~ #marker {
+  -webkit-transform: translate(3px, 0);
+  -moz-transform: translate(3px, 0);
+  -ms-transform: translate(3px, 0);
+  transform: translate(3px, 0);
+}
+#line li:nth-child(2):hover ul div {
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+#line li:nth-child(2):hover ~ #marker {
+  -webkit-transform: translate(59px, 0);
+  -moz-transform: translate(59px, 0);
+  -ms-transform: translate(59px, 0);
+  transform: translate(59px, 0);
+}
+#line li:nth-child(3):hover ul div {
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+#line li:nth-child(3):hover ~ #marker {
+  -webkit-transform: translate(117px, 0);
+  -moz-transform: translate(117px, 0);
+  -ms-transform: translate(117px, 0);
+  transform: translate(117px, 0);
+}
+#line li:nth-child(4):hover ul div {
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+#line li:nth-child(4):hover ~ #marker {
+  -webkit-transform: translate(175px, 0);
+  -moz-transform: translate(175px, 0);
+  -ms-transform: translate(175px, 0);
+  transform: translate(175px, 0);
+}
+#line li:nth-child(5):hover ul div {
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+#line li:nth-child(5):hover ~ #marker {
+  -webkit-transform: translate(232px, 0);
+  -moz-transform: translate(232px, 0);
+  -ms-transform: translate(232px, 0);
+  transform: translate(232px, 0);
+}
+#line li:nth-child(6):hover ul div {
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+#line li:nth-child(6):hover ~ #marker {
+  -webkit-transform: translate(290px, 0);
+  -moz-transform: translate(290px, 0);
+  -ms-transform: translate(290px, 0);
+  transform: translate(290px, 0);
+}
+#line li:nth-child(7):hover ul div {
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+#line li:nth-child(7):hover ~ #marker {
+  -webkit-transform: translate(347px, 0);
+  -moz-transform: translate(347px, 0);
+  -ms-transform: translate(347px, 0);
+  transform: translate(347px, 0);
+}
+#line li:nth-child(8):hover ul div {
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+#line li:nth-child(8):hover ~ #marker {
+  -webkit-transform: translate(407px, 0);
+  -moz-transform: translate(407px, 0);
+  -ms-transform: translate(407px, 0);
+  transform: translate(407px, 0);
+}
+#line li:nth-child(9):hover ul div {
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+#line li:nth-child(9):hover ~ #marker {
+  -webkit-transform: translate(478px, 0);
+  -moz-transform: translate(478px, 0);
+  -ms-transform: translate(478px, 0);
+  transform: translate(478px, 0);
+}
