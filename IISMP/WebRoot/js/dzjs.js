@@ -1177,7 +1177,7 @@ function shuaxintype(){
 function fileChange(target, id) {
 	// var strFileName = $("#uploadfile").val();
 	var fileSize = 0;
-	var filetypes = [ ".zip", ".rar",".txt",".ppt",".pdf",".java",".doc",".xls",".xlsx",".docx"];
+	var filetypes = [ ".zip", ".rar",".txt",".ppt",".pptx",".pdf",".java",".doc",".xls",".xlsx",".docx"];
 	var filepath = target.value;
 	var filemaxsize = 1024 * 2;// 100M
 	if (filepath) {
@@ -1192,7 +1192,7 @@ function fileChange(target, id) {
 			}
 		}
 		if (!isnext) {
-			alert("文件格式不符合上传要求！\n请上传格式为.zip .rar .txt .ppt .pdf .java .doc .xls .xlsx .docx的信息文件");
+			alert("文件格式不符合上传要求！\n请上传格式为.zip .rar .txt .ppt, .pptx, .pdf .java .doc .xls .xlsx .docx的信息文件");
 			target.value = "";
 			return false;
 		}
