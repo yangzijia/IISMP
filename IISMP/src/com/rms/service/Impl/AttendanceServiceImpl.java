@@ -369,8 +369,8 @@ public class AttendanceServiceImpl extends BaseService implements AttendanceServ
 	 * @param a_datetime
 	 * @return
 	 */
-	public boolean isExistDate(String a_datetime) {
-		if(attendanceDao.isExistDate(a_datetime)){
+	public boolean isExistDate(String a_datetime,int m_id) {
+		if(attendanceDao.isExistDate(a_datetime,m_id)){
 			return true;
 		}
 		return false;

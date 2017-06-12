@@ -3368,7 +3368,7 @@ function addclassnamemethod() {
  * 增加qq的方法
  */
 function addqqmethod() {
-	webtools(qqinfo);
+	//webtools(qqinfo);
 	var qqinfo = $("#newqqid").val();
 	if (qqinfo == "") {
 		alert("您所填内容不能为空！！");

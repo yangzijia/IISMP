@@ -596,7 +596,7 @@ public class AttendanceAction extends BaseAction{
 		PrintWriter out = response.getWriter();
 		JSONObject json = new JSONObject();
 		//根据申诉日期查找是否申诉过
-		if(!attendanceService.isExistDate(a_datetime)){
+		if(!attendanceService.isExistDate(a_datetime,memberinfo.getM_id())){
 			//根据日期查找用户的考勤信息
 			List<Attendance> atten = attendanceService.finduseratteninfo(memberinfo.getM_id(),a_datetime);
 			Attendance_unusual au = new Attendance_unusual();

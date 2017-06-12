@@ -399,9 +399,9 @@ public class AttendanceDaoImpl extends BaseDao implements  AttendanceDao{
 	 * @param a_datetime
 	 * @return
 	 */
-	public boolean isExistDate(String a_datetime) {
+	public boolean isExistDate(String a_datetime,int m_id) {
 		@SuppressWarnings("unchecked")
-		List<Attendance_unusual> list = hibernateTemplate.find("from Attendance_unusual where datetime='"+ a_datetime +"'");
+		List<Attendance_unusual> list = hibernateTemplate.find("from Attendance_unusual where datetime='"+ a_datetime +"' and applyuser_id="+ m_id +"");
 		if(list.size() > 0){
 			return true;
 		}

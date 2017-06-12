@@ -247,9 +247,10 @@ public interface AttendanceDao {
 	/**
 	 * 根据a_datetime查询申诉列表里是否存在当前信息（防止重复提交）
 	 * @param a_datetime
+	 * @param m_id 
 	 * @return
 	 */
-	public abstract boolean isExistDate(String a_datetime);
+	public abstract boolean isExistDate(String a_datetime, int m_id);
 
 	/**
 	 * 查询出所有的默认IP的方法
