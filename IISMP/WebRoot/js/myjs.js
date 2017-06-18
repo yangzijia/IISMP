@@ -1881,35 +1881,41 @@ function index_checkinmethod(){
 			var checkout = "&nbsp;";
 			var kaoqinanniu = "";
 			var str = eval("(" + data + ")");
-			if (str.isCheckin) {
-				if (str.instate) {
-					checkin = "<h4 style='color: red'>"
-						+ str.check_in_time + "</h4><span  align='center'>"+str.ipinfo_in+"</span>";
+			if(!str.ischeck){
+				//第一次签到反馈
+				if (str.isCheckin) {
+					if (str.instate) {
+						checkin = "<h4 style='color: red'>"
+							+ str.check_in_time + "</h4><span  align='center'>"+str.ipinfo_in+"</span>";
+					} else {
+						checkin = "<h4 style='color: #999'>"
+							+ str.check_in_time + "</h4><span  align='center'>"+str.ipinfo_in+"</span>";
+					}
+					kaoqinanniu = "<button type='button' onclick='qiantuimethod();' class='btn btn-default btn-block btn-info' style='margin-bottom: 20px;'>签退</button>";
+					checkout = '<h3 id="shangban"></h3>';
 				} else {
-					checkin = "<h4 style='color: #999'>"
-						+ str.check_in_time + "</h4><span  align='center'>"+str.ipinfo_in+"</span>";
+					kaoqinanniu = "<button type='button' onclick='qiandaomethod();' class='btn btn-default btn-block btn-info' style='margin-bottom: 20px;'>签到</button>";
+					checkin = '<h3 id="shangban"></h3>';
+					checkout = "<h3>00:00:00</h3>";
 				}
-				kaoqinanniu = "<button type='button' onclick='qiantuimethod();' class='btn btn-default btn-block btn-info' style='margin-bottom: 20px;'>签退</button>";
-				checkout = '<h3 id="shangban"></h3>';
-			} else {
-				kaoqinanniu = "<button type='button' onclick='qiandaomethod();' class='btn btn-default btn-block btn-info' style='margin-bottom: 20px;'>签到</button>";
-				checkin = '<h3 id="shangban"></h3>';
-				checkout = "<h3>00:00:00</h3>";
-			}
-			if (str.isCheckout) {
-				if (str.outstate) {
-					checkout = "<h4 style='color: red'>"
-						+ str.check_out_time + "</h4><span  align='center'>"+str.ipinfo_out+"</span>";
-				} else {
-					checkout = "<h4 style='color: #999'>"
-						+ str.check_out_time + "</h4><span  align='center'>"+str.ipinfo_out+"</span>";
+				if (str.isCheckout) {
+					if (str.outstate) {
+						checkout = "<h4 style='color: red'>"
+							+ str.check_out_time + "</h4><span  align='center'>"+str.ipinfo_out+"</span>";
+					} else {
+						checkout = "<h4 style='color: #999'>"
+							+ str.check_out_time + "</h4><span  align='center'>"+str.ipinfo_out+"</span>";
+					}
+					kaoqinanniu = "<button type='button' class='btn btn-default btn-block btn-info disabled' style='margin-bottom: 20px;'>签退</button>";
 				}
-				kaoqinanniu = "<button type='button' class='btn btn-default btn-block btn-info disabled' style='margin-bottom: 20px;'>签退</button>";
+				document.getElementById('checkindate').innerHTML = checkin;
+				$("#checkoutdate").html(checkout);
+				$("#kaoqinanniu").html(kaoqinanniu);
+				alert("签到成功！！");
+			}else{
+				alert("您已经签过到了");
+				return ;
 			}
-			document.getElementById('checkindate').innerHTML = checkin;
-			$("#checkoutdate").html(checkout);
-			$("#kaoqinanniu").html(kaoqinanniu);
-			alert("签到成功！！");
 			spinnerend();
 		},
 		error : function(data) {

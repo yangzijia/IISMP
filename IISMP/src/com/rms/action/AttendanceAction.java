@@ -407,60 +407,82 @@ public class AttendanceAction extends BaseAction{
 	public void checkinAction() throws Exception {
 		HttpSession session = ServletActionContext.getRequest().getSession();
 		MembershipInfo memberinfo = (MembershipInfo)session.getAttribute("memberinfo");
-		//获取默认班次
-		List<Shift> ssinfo = attendanceService.findshiftInfo();
-		Shift ss = ssinfo.get(0);
-		String check_in = ss.getCheck_in_time_hour()+":"+ss.getCheck_in_time_minute();
-		String check_out = ss.getCheck_out_time_hour()+":"+ss.getCheck_out_time_minute();
-		String tanxing_time = ss.getElas_time();
+		m_id=memberinfo.getM_id();
 		//获取当前日期    yyyy-MM-dd
 		String datetime = DateUtil.getNowStrDate();
 		//获取当前时间    HH:mm
-		String checkintime = nowtime;
-		String yueritime = DateUtil.getMonth()+"月"+DateUtil.getMonthtoToday()+"日";
-		String nianyuetime = DateUtil.getYear()+"年"+DateUtil.getMonth()+"月";
-		
-		//获取正常ip
-		String ipinfo = "<font size='2' color=red>IP异常："+atten_ipaddr+"</font>";
-		boolean ipbolean = true;
-		List<DefaultIP> dip = attendanceService.findAllIp();
-		if(dip!=null && dip.size()>0){
-			for (DefaultIP d : dip) {
-				String ip = d.getIpaddr();
-				if(atten_ipaddr.equals(ip)){
-					ipinfo = "<font size='2' color='#999'>IP："+atten_ipaddr+"</font>";
-					ipbolean = false;
-					break;
+		//String checkouttime = DateUtil.getTimeHHmm();        
+		//String checkouttime = nowtime;
+		//查询出考勤信息
+		List<Attendance> atten = attendanceService.findAttendanceinfos(m_id,datetime);
+		//判断是否已经签到，用来防止重复签到
+		boolean ischeck = false;
+		if(atten != null && atten.size() > 0){
+			//已经签到了
+			HttpServletResponse response = ServletActionContext.getResponse();
+			PrintWriter out = response.getWriter();
+			ischeck=true;
+			JSONObject json = new JSONObject();
+			json.put("ischeck", ischeck);
+			out.print(json);
+			out.flush();
+			out.close();
+		}else{
+			//这是首次签到
+			
+			//获取默认班次
+			List<Shift> ssinfo = attendanceService.findshiftInfo();
+			Shift ss = ssinfo.get(0);
+			String check_in = ss.getCheck_in_time_hour()+":"+ss.getCheck_in_time_minute();
+			String check_out = ss.getCheck_out_time_hour()+":"+ss.getCheck_out_time_minute();
+			String tanxing_time = ss.getElas_time();
+			
+			//获取当前时间    HH:mm
+			String checkintime = nowtime;
+			String yueritime = DateUtil.getMonth()+"月"+DateUtil.getMonthtoToday()+"日";
+			String nianyuetime = DateUtil.getYear()+"年"+DateUtil.getMonth()+"月";
+			
+			//获取正常ip
+			String ipinfo = "<font size='2' color=red>IP异常："+atten_ipaddr+"</font>";
+			boolean ipbolean = true;
+			List<DefaultIP> dip = attendanceService.findAllIp();
+			if(dip!=null && dip.size()>0){
+				for (DefaultIP d : dip) {
+					String ip = d.getIpaddr();
+					if(atten_ipaddr.equals(ip)){
+						ipinfo = "<font size='2' color='#999'>IP："+atten_ipaddr+"</font>";
+						ipbolean = false;
+						break;
+					}
 				}
 			}
+			
+			Attendance ad = new Attendance();
+			ad.setA_check_in_time(checkintime);
+			ad.setA_datetime(datetime);
+			ad.setA_yueritime(yueritime);
+			ad.setA_nianyuetime(nianyuetime);
+			ad.setM_id(memberinfo.getM_id());
+			ad.setIpinfo_in(ipinfo);
+			ad.setIpaddr_in(atten_ipaddr);
+			ad.setShiftsection(check_in+"~"+check_out);
+			if(ipbolean){
+				ad.setIpstate("IP异常");
+			}else{
+				ad.setIpstate("IP正常");
+			}
+			//比较当前时间与默认班次的签到时间
+			if(Double.parseDouble(DateUtil.getTwoHour(checkintime,DateUtil.getPreTimehhmm(check_in,tanxing_time))) > 0){
+				ad.setA_state("迟到，未签退");
+			}else {
+				ad.setA_state("未签退");
+			}
+			//Thread.sleep(3000);
+			//添加签到信息
+			attendanceService.addcheckininfos(ad);
+			//刷新界面信息
+			this.judgememberatten();
 		}
-		
-		Attendance ad = new Attendance();
-		ad.setA_check_in_time(checkintime);
-		ad.setA_datetime(datetime);
-		ad.setA_yueritime(yueritime);
-		ad.setA_nianyuetime(nianyuetime);
-		ad.setM_id(memberinfo.getM_id());
-		ad.setIpinfo_in(ipinfo);
-		ad.setIpaddr_in(atten_ipaddr);
-		ad.setShiftsection(check_in+"~"+check_out);
-		if(ipbolean){
-			ad.setIpstate("IP异常");
-		}else{
-			ad.setIpstate("IP正常");
-		}
-		//比较当前时间与默认班次的签到时间
-		if(Double.parseDouble(DateUtil.getTwoHour(checkintime,DateUtil.getPreTimehhmm(check_in,tanxing_time))) > 0){
-			ad.setA_state("迟到，未签退");
-		}else {
-			ad.setA_state("未签退");
-		}
-		//Thread.sleep(3000);
-		//添加签到信息
-		attendanceService.addcheckininfos(ad);
-		//刷新界面信息
-		this.judgememberatten();
-	
 	}
 	
 	/**
