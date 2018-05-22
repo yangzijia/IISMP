@@ -94,11 +94,27 @@ Contest c=contest.get(0);
 				  <div class="form-group">
 				     <div class="col-sm-1"></div>
 					 <div class="col-sm-10">
-					   <a href="javascript:void(0);" style="text-decoration: none;"><a id="modal-722544" href="#modal-container-7" data-toggle="modal" style="text-decoration: none;"><img alt="300x200" src="<%=c.getC_image()%>" style="width:600px;height:150px;"/></a></a>
+					   <a href="javascript:void(0);" style="text-decoration: none;"><a id="modal-722544" href="#modal-container-7" data-toggle="modal" style="text-decoration: none;"><img alt="300x200" src="
+					   <%
+							if(c.getC_image()==null){
+							%>
+							contestimage/kong.jpg
+							<%
+							}else{
+							%>
+							<%=c.getC_image() %>
+							<%} %>
+					   " style="width:600px;height:150px;"/></a></a>
 					 </div>
 					 <div class="col-sm-1"></div>
 				  </div>
-				  <br />				  
+				  <br />		
+				  <div class="form-group">
+				       <label class="col-sm-3 control-label">比赛名称：</label>
+				       <div class="col-sm-8"		>
+				         <input type="text" class="form-control input-sm" id="cname"  style="width:49%;" value="<%=c.getContest_title() %>">
+				       </div>
+				  </div>		  
 				  <div class="form-group">
 				       <label class="col-sm-3 control-label">参赛项目：</label>
 				       <div class="col-sm-8"		>
@@ -121,6 +137,12 @@ Contest c=contest.get(0);
 				       <label class="col-sm-3 control-label">参赛地点：</label>
 				       <div class="col-sm-8">
 				          <input type="text" class="form-control input-sm" id="c_place" style="width:49%;" value="<%=c.getContest_place()%>">
+				       </div>
+				  </div>
+				  <div class="form-group">
+				       <label class="col-sm-3 control-label">大赛网址：</label>
+				       <div class="col-sm-8">
+				          <input type="text" class="form-control input-sm" id="curl" style="width:49%;" value="<%=c.getContets_url()%>">
 				       </div>
 				  </div>
 				  <div class="form-group">
@@ -218,8 +240,8 @@ Contest c=contest.get(0);
 							<ul class="box-list" id="letto" style="margin-bottom:0;">
 							  <li class="list-group-item"	>
 							    <label class="del" style="margin-top:7px;">
-							        <input type="checkbox" name="kkk" 	id="p_member" value="<%=m.getM_username()%>"	onclick="test1('<%=m.getM_username()%>')"/>
-							        <%=m.getM_username()%>
+							        <input type="checkbox" name="kkk" 	id="p_member" value="<%=m.getM_truename()%>"	onclick="test1('<%=m.getM_truename()%>')"/>
+							        <%=m.getM_truename()%>
 							    </label>   
 							  </li> 
 							</ul>

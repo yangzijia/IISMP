@@ -236,6 +236,7 @@ function addannocement(){
 		success:function(data) {
 			alert("保存公告成功！！");
 			window.location.href=url11;
+			spinnerend();
 		},
 		error:function(data) {
 			alert("操作失败，请刷新后重新操作！！");
@@ -282,10 +283,9 @@ function baocun11(){
 		},
 		cache:false,
 		success:function(data) {
-			spinnerend();
 			alert("保存公告成功！！");
-			spinnerstart();
 			window.location.href=url11;	
+			spinnerend();
 		},
 		error:function(data){
 			alert("操作失败，请刷新后重新操作！！");
@@ -302,6 +302,7 @@ function deleteAbyid(){
 	var url11 = url+'/showAnnounceAction';
 	var announcement_id =  $("#announcement_id11").html();
 	url1 = url + '/deleteAbyid';
+	spinnerstart();
 	if(confirm("是否确定删除这条数据？")){
 		$.ajax({
 			type:'post',
@@ -312,13 +313,14 @@ function deleteAbyid(){
 				'announcement_id':announcement_id
 			},
 			success:function(data) {
-				spinnerstart();
+				
 				alert("删除公告成功！！");
 				window.location.href=url11;
-		
+				spinnerend();
 			},
 			error:function(data){
 				alert("操作失败，请刷新后重新操作！！");
+				spinnerend();
 			}
 		});
 	}else {
@@ -330,6 +332,7 @@ function deleteAbyid(){
 function findasid2(obj){
 	var url11 = url+'/findbyAsid2';
 	var as_id=obj;
+	spinnerstart();
 	$.ajax({
 		type:'post',
 		datetype:'html',
@@ -340,12 +343,13 @@ function findasid2(obj){
 		},
 		
 		success:function(data) {
-			spinnerstart();
 			window.location.href=url11;
+			spinnerend();
         	
 		},
 		error:function(data){
 			alert("操作失败，请刷新后重新操作！！");
+			spinnerend();
 		}
 	});
 }
@@ -400,7 +404,7 @@ function  editAnno(){
 	var announcement_id=$("#anno_id").html();
 	var url2=url+'/editanno';
 	var url1=url+'/showAnnounceAction';
-	
+	spinnerstart();
 	$.ajax({
 		type:'post',
 		datetype:'html',
@@ -414,9 +418,10 @@ function  editAnno(){
 			"announcement_id":announcement_id
 		}, 
 		success:function(data) {
-			spinnerstart();
+			
         	alert("发布成功！");
         	window.location.href=url1;
+        	spinnerend();
         } 
     });
 }
@@ -434,26 +439,26 @@ function addEquip(){
 	var e_precautions=$("#Eprecaution").val();//注意事项
 	var e_principal=$("#Eprincipal").val();
 	var url1=url+'/addEquipment';
-	
+	var url2=url+'/ShowequipAction';
+	spinnerstart();
 	$.ajax({
 		type:'post',
 		datetype:'html',
 		url:url1,
 		cache:false,
 		data:{
-		"e_name":e_name,
-		"e_buytime":e_buytime,
-		"e_price":e_price,
-		"e_purchaser":e_purchaser,
-		"e_principal":e_principal,
-		"e_precautions":e_precautions,
+			"e_name":e_name,
+			"e_buytime":e_buytime,
+			"e_price":e_price,
+			"e_purchaser":e_purchaser,
+			"e_principal":e_principal,
+			"e_precautions":e_precautions,
 		}, 
 		success:function(data) {
-		spinnerstart();
-    	alert("增加成功！");
-    	/*window.location.href=url2;*/
-    	$("#modal-container-184706").modal("hide");
-    	shuaxinequip();
+	    	alert("增加成功！");
+	    	window.location.href=url2;
+	    	$("#modal-container-184706").modal("hide");
+	    	spinnerend();
         } 
     });
 }
@@ -464,46 +469,50 @@ function deleteEquipment(obj){
 	var e_id=obj;	
 	var url1=url+'/deleteEquip';
 	var url2=url+'/ShowequipAction';
-	if(confirm("是否确定删除？"))$.ajax({
-	type:'post',
-	datetype:'html',
-	url:url1,
-	cache:false,
-	data:{
-	"e_id":e_id,
-		
-	}, 
-	success:function(data) {
-	spinnerstart();
-	alert("删除成功！");
-	shuaxinequip();
-    } 
-    });
+	if(confirm("是否确定删除？")){
+		spinnerstart();
+		$.ajax({
+			type:'post',
+			datetype:'html',
+			url:url1,
+			cache:false,
+			data:{
+				"e_id":e_id,
+			}, 
+			success:function(data) {
+				alert("删除成功！");
+				window.location.href=url2;	
+				spinnerend();
+		    } 
+	    });
+	}
 }
 
 //编辑设备信息
 function editEquips(obj){
 	var e_id=obj;
 	var url1=url+'/findEbyid';
+	spinnerstart();
 	$.ajax({
 		type:'post',
 		datetype:'html',
 		url:url1,
 		cache:false,
 		data:{
-		"e_id":e_id,
+			"e_id":e_id,
 		}, 
 		success:function(data) {		
-    	var str = eval("("+data+")");
-    	$("#echecktime").val(str.e_checktime);
-		$("#epattern").val(str.e_pattern);
-		$("#eprecautions").val(str.e_precautions);
-		$("#eprice").val(str.e_price);
-		$("#eprincipal").val(str.e_principal);
-		$("#epurchaser").val(str.e_purchaser);
-		$("#einfobuytime").val(str.e_buytime);
-		$("#ename").val(str.e_name);
-		document.getElementById("eeid").innerHTML=obj;
+	    	var str = eval("("+data+")");
+	    	$("#echecktime").val(str.e_checktime);
+			$("#edit_name").val(str.e_name);
+			$("#eprecautions").val(str.e_precautions);
+			$("#eprice").val(str.e_price);
+			$("#eHeadPerson").val(str.e_principal);
+			$("#editPurchaser").val(str.e_purchaser);
+			$("#einfobuytime").val(str.e_buytime);
+//			$("#ename").val(str.e_name);
+			document.getElementById("eeid").innerHTML=obj;
+			spinnerend();
         } 
     });
 }
@@ -513,15 +522,17 @@ function editEquips(obj){
  */
 function save_equipinfo(){
 	var e_id=$("#eeid").html();
-	var e_checktime=$("#echecktime").val();
-	var e_pattern=$("#epattern").val();
+//	var e_checktime=$("#echecktime").val();
+	
+	var e_principal=$("#eHeadPerson").val();	
 	var e_precautions=$("#eprecautions").val();
+	var e_purchaser=$("#editPurchaser").val();
 	var e_price=$("#eprice").val();
-	var e_purchaser=$("#epurchaser").val();
 	var e_buytime=$("#einfobuytime").val();
-	var e_principal=$("#eprincipal").val();	
+	var e_name=$("#edit_name").val()
 	var url1 = url + '/save_equipinfo';
 	var url2=url+'/ShowequipAction';
+	spinnerstart();
 	$.ajax({
 		type:'post',
 		url:url1,
@@ -531,21 +542,23 @@ function save_equipinfo(){
 			"e_principal":e_principal,
 			"e_precautions":e_precautions,
 			"e_buytime":e_buytime,
-			"e_checktime":e_checktime,
-			"e_pattern":e_pattern,
+//			"e_checktime":e_checktime,
+//			"e_pattern":e_pattern,
 			"e_price":e_price,			
-			"e_purchaser":e_purchaser
+			"e_purchaser":e_purchaser,
+			"e_name":e_name
 		},
 		cache:false,
 		success:function(data) {
-			spinnerstart();
 			alert("编辑成功！！");			
 			//关闭模态框
 			$("#modal-container-722545").modal("hide");
-			window.location.href=url2;		
+			window.location.href=url2;	
+			spinnerend();
 		},
 		error:function(data){
 			alert("操作失败，请刷新后重新操作！！");
+			spinnerend();
 		}
 		
 	});
@@ -555,6 +568,7 @@ function save_equipinfo(){
 function findEinfobyid(obj){
 	var e_id=obj;
 	var url1=url+'/findEbyid';
+	spinnerstart();
 	$.ajax({
 		type:'post',
 		datetype:'html',
@@ -574,12 +588,14 @@ function findEinfobyid(obj){
 			$("#e_buytime").html(str.e_buytime);
 			$("#e_name").html(str.e_name);
 			document.getElementById("imgid").src=str.e_image;
+			spinnerend();
         } 
     });
 }
 //设备的刷新
 function shuaxinequip(){
 	var url1=url+'/refreshequip';
+	spinnerstart();
 	$.ajax({
 		type:'post',
 		datetype:'html',
@@ -592,50 +608,53 @@ function shuaxinequip(){
 			var str = eval("("+data+")");
 			if(str.isempty==false){
 				var thisstr="";
-			
-		$.each(str.jsona, function() {
-			var tr1='<td><a href="javascript:void(0);" style="text-decoration: none;"><a id="modal-722544" href="javascript:void(0);" onclick="chuanid('+this.e_id+');"data-toggle="modal" style="text-decoration: none;">'
-	        var tr11='<img id="eimg" src="('+this.e_picture+')" class="photo" data-toggle="tooltip" data-placement="bottom" title="上传和修改图片" style="width:80px;;height:50px;border-radius:10%;border:3px dotted #ccc;"></a></a></td>'	        										
-			var tr2='<td>'+this.e_name+'</td>';
-			var tr3='<td>'+this.e_buytime+'</td>';
-			var tr4='<td>'+this.e_price+'</td>';
-			var tr5='<td>'+this.e_purchaser+'</td>';
-			var tr6='<td>'+this.e_principal+'</td>';
-			var tr7= '<td><a href="javascript:void(0);"  onclick="editEquips('+this.e_id+')" data-toggle="modal" data-target="#modal-container-722545">';
-			var tr8= '<img src="img/edit.png"  data-toggle="tooltip" data-placement="bottom" title="编辑"/></a>&nbsp;';
-			var tr9 = '<a href="javascript:void(0);"  onclick="deleteEquipment('+this.e_id+')" style="text-decoration: none;">';
-			var tr10 = '<img src="img/del.png"  data-toggle="tooltip" data-placement="bottom" title="删除"/></a></td></tr>';
-			var tr12='<td></td>'
-			thisstr = thisstr + tr1+tr11 + tr2 + tr3 + tr4
-			  +tr5+ tr6+tr12+tr7+tr8+tr9+tr10;
-			});
-			document.getElementById('eqbody').innerHTML=thisstr;		
-		}else{
-			var thisstr = "";
-			var tr1 = "<td></td>";
-			var tr2 = "<td>暂无信息...</td>";
-			var tr3 = "<td></td>";
-			var tr4 = "<td></td>";
-			
-			thisstr = thisstr + "<tr>" + tr1 + tr2 + tr3 + tr4
-					  + "</tr>";
-			document.getElementById('eqbody').innerHTML=thisstr;
+//			style="width:80px;height:50px;border-radius:10%;border:3px dotted #ccc;"      data-toggle="tooltip" data-placement="bottom"
+			$.each(str.jsona, function() {
+//				var tr1='<td><a href="javascript:void(0);" onclick="chuanid('+this.e_id+');"data-toggle="modal" style="text-decoration: none;"id="modal-722544">'
+//		        var tr11='<img id="eimg" src="('+this.e_picture+')" title="上传和修改图片" ></a></td>'	        										
+				var tr2='<td>'+this.e_name+'</td>';
+				var tr3='<td>'+this.e_buytime+'</td>';
+				var tr4='<td>'+this.e_price+'</td>';
+				var tr5='<td>'+this.e_purchaser+'</td>';
+				var tr6='<td>'+this.e_principal+'</td>';
+				var tr7= '<td><a href="javascript:void(0);"  onclick="editEquips('+this.e_id+')" data-toggle="modal" data-target="#modal-container-722545">';
+				var tr8= '<img src="img/edit.png"  data-toggle="tooltip" data-placement="bottom" title="编辑"/></a>&nbsp;';
+				var tr9 = '<a href="javascript:void(0);"  onclick="deleteEquipment('+this.e_id+')" style="text-decoration: none;">';
+				var tr10 = '<img src="img/del.png"  data-toggle="tooltip" data-placement="bottom" title="删除"/></a></td></tr>';
+				var tr12='<td></td>'
+				thisstr = thisstr + tr1+tr11 + tr2 + tr3 + tr4
+				  +tr5+ tr6+tr12+tr7+tr8+tr9+tr10;
+				});
+				document.getElementById('eqbody').innerHTML=thisstr;		
+			}else{
+				var thisstr = "";
+				var tr1 = "<td></td>";
+				var tr2 = "<td>暂无信息...</td>";
+				var tr3 = "<td></td>";
+				var tr4 = "<td></td>";
+				
+				thisstr = thisstr + "<tr>" + tr1 + tr2 + tr3 + tr4
+						  + "</tr>";
+				document.getElementById('eqbody').innerHTML=thisstr;
+			}
+			spinnerend();
+		},
+		error:function(data) {
+			alert("操作失败，请刷新后重新操作！！");
+			spinnerend();
 		}
-},
-	error:function(data) {
-		alert("操作失败，请刷新后重新操作！！");
-	}
-});	
+	});	
 }
+
 function test1(obj){
-var d=obj;
-$("#Eprincipal").val(d);
+	var d=obj;
+	$("#Eprincipal").val(d);
 }
+
 function test2(obj){
 	var d=obj;
-	
-	$("#eprincipal").val(d);
-	}
+	$("#eHeadPerson").val(d);
+}
 
 
 
@@ -647,7 +666,7 @@ function test2(obj){
 function  findCbyid(obj){
 	var contest_id=obj;
 	var url1=url+'/findConByid';
-
+	spinnerstart();
 	$.ajax({
 		type:'post',
 		datetype:'html',
@@ -666,53 +685,56 @@ function  findCbyid(obj){
 			$("#project_awads").html(str.project_awads);
 			$("#contest_experience").html(str.contest_experience);
 			document.getElementById("cimage").src=str.c_image;
-			
+			spinnerend();
         } 
     });
 	
 }	
-	//保存比赛编辑信息
-	function changeCon(obj){
-		var url2=url+'/SaveCon';
-		var url1=url+'/ShowContestAction';
-		var contest_id=obj;
-		var p_name=$("#p_name").val();
-		var p_member=$("#p_member").val();
-		var c_time=$("#c_time").val();
-		var c_place=$("#c_place").val();
-		var p_info=$("#p_info").val();
-		var p_awads=$("#p_awads").val();
-		var c_experience=$("#c_experience").val();
-		$.ajax({
-			type:'post',
-			datetype:'html',
-			url:url2,
-			cache:false,
-			data:{
-				"contest_id":contest_id,	
-				"project_name":p_name,
-				"project_member":p_member,
-				"contest_time":c_time,
-				"contest_place":c_place,
-				"project_info":p_info,
-				"project_awads":p_awads,
-				"contest_experience":c_experience
-		
-			}, 
-			success:function(data) {
-			spinnerstart();
+//保存比赛编辑信息
+function changeCon(obj){
+	spinnerstart();
+	var url2=url+'/SaveCon';
+	var url1=url+'/ShowContestAction';
+	var contest_id=obj;
+	var p_name=$("#p_name").val();
+	var p_member=$("#person").val();
+	var c_time=$("#c_time").val();
+	var c_place=$("#c_place").val();
+	var p_info=$("#p_info").val();
+	var p_awads=$("#p_awads").val();
+	var cname=$("#cname").val()
+	var curl=$("#curl").val()
+	var c_experience=$("#c_experience").val();
+	$.ajax({
+		type:'post',
+		datetype:'html',
+		url:url2,
+		cache:false,
+		data:{
+			"contest_id":contest_id,	
+			"project_name":p_name,
+			"project_member":p_member,
+			"contest_time":c_time,
+			"contest_place":c_place,
+			"project_info":p_info,
+			"project_awads":p_awads,
+			"contest_experience":c_experience,
+			"contets_url":curl,
+			"contest_title":cname
+		}, 
+		success:function(data) {
 			alert("编辑成功！！")
 			window.location.href=url1;
-				
-	        } 
-	    });	
-	}
+			spinnerstart();
+        } 
+    });	
+}
 	
 //取消编辑，增加，回到显示页面
-	function quxiao(){
-		var url1=url+'/ShowContestAction';
-		window.location.href=url1;
-	}
+function quxiao(){
+	var url1=url+'/ShowContestAction';
+	window.location.href=url1;
+}
 	
 //增加比赛
 function addContest(){
@@ -724,7 +746,10 @@ function addContest(){
 	var c_time=$("#ctime").val();
 	var c_place=$("#cplace").val();
 	var c_url=$("#curl").val();
+	var c_info=$("#projectInfo").val()
+	var c_awads=$("#p_awads").val()
 	var c_experience=$("#cjingyan").val();
+	spinnerstart();
 	$.ajax({
 		type:'post',
 		datetype:'html',
@@ -736,15 +761,15 @@ function addContest(){
 			"project_member":p_member,
 			"contest_time":c_time,
 			"contest_place":c_place,
-			"contest_url":c_url,
-			"contest_experience":c_experience
-	
+			"contets_url":c_url,
+			"contest_experience":c_experience,
+			"project_info":c_info,
+			"project_awads":c_awads
 		}, 
 		success:function(data) {
-		spinnerstart();
-		alert("增加成功！！")
-		window.location.href=url1;
-			
+			alert("增加成功！！")
+			window.location.href=url1;
+			spinnerend();
         } 
     });	
 }
@@ -754,6 +779,7 @@ function addContest(){
 function findpByid(obj){
 	var project_id=obj;
 	var url1=url+'/findProByid';
+	spinnerstart();
 	$.ajax({
 		type:'post',
 		datetype:'html',
@@ -763,13 +789,14 @@ function findpByid(obj){
 			"project_id":project_id,	
 		}, 
 		success:function(data) {
+			
 			var str = eval("("+data+")");
 			$("#Pname").html(str.project_name);
 			$("#Pinfo").html(str.project_info);
 			$("#Pawards").html(str.project_awards);
 			$("#Pexperience").html(str.contest_experience);
 			$("#Sname").html(str.project_section);
-			
+			spinnerend();
         } 
     });
 	
@@ -781,6 +808,7 @@ function findpro(obj){
 	var project_id=obj;
 	
 	var url1=url+'/findProByid';
+	spinnerstart();
 	$.ajax({
 		type:'post',
 		datetype:'html',
@@ -790,9 +818,11 @@ function findpro(obj){
 			"project_id":project_id,	
 		}, 
 		success:function(data) {
+			spinnerend();
 			var str = eval("("+data+")");
 			$("#proname").val(str.project_name);
 			$("#proinfo").html(str.project_info);
+			$("#prosection").val(str.project_section);
 			document.getElementById("proid").innerHTML=obj;
 			
 			
@@ -805,11 +835,13 @@ function findpro(obj){
 function savepro(){
 	var project_id=$("#proid").html();
 	var url1=url+'/saveProject';
-	var  project_name=$("#proname").val();
+	var project_name=$("#proname").val();
 	var project_info=$("#proinfo").val();
 	var project_section=$("#prosection").val();
-	var url2=url+'/ShowProjectAction';
 	
+	
+//	var url2=url+'/ShowProjectAction';
+	spinnerstart();
 	$.ajax({
 		type:'post',
 		datetype:'html',
@@ -822,11 +854,10 @@ function savepro(){
 			"project_section":project_section
 		}, 
 		success:function(data) {
-			spinnerstart();
 			alert("编辑成功！！！");
-			/*window.location.href=url2;*/
-			
-			shuaxinproject();		
+			$("#modal-container-723").modal("hide");
+			shuaxinproject();	
+			spinnerend();
         } 
     });
 	
@@ -839,6 +870,7 @@ function addProject(){
 	var project_info=$("#project_info").val();
 	/*var url2=url+'/ShowProjectAction';*/
 	var url1=url+'/addProject';
+	spinnerstart();
 	$.ajax({
 		type:'post',
 		datetype:'html',
@@ -851,11 +883,11 @@ function addProject(){
 	
 		}, 
 		success:function(data) {
-			spinnerstart();
 			alert("增加成功！！！")
 			/*window.location.href=url2;*/
 			$("#modal-container-184707").modal("hide");
 			shuaxinproject();
+			spinnerend();
         } 
     });
 }
@@ -995,9 +1027,11 @@ function fanyere(obj){
 			}
 			
 			$("#relist").html(listring);
+			spinnerend();
 		},
 		error:function(data) {
 			alert("操作失败，请刷新后重新操作！！");
+			spinnerend();
 		}
 	});
 	
@@ -1009,21 +1043,23 @@ function deleteRTbyid(obj){
 	var url1=url+'/deleteRTbyidAction';
 	
 	var url2=url+'/showRTaction';
-	if(confirm("是否确定删除"))$.ajax({
-		type:'post',
-		datetype:'html',
-		url:url1,
-		cache:false,
-		data:{
-			"rt_id":rt_id,	
-		}, 
-		success:function(data) {
-			spinnerstart();
-		alert("删除成功！");
-		shuaxintype();
-		
+	spinnerstart();
+	if(confirm("是否确定删除")){
+		$.ajax({
+			type:'post',
+			datetype:'html',
+			url:url1,
+			cache:false,
+			data:{
+				"rt_id":rt_id,	
+			}, 
+			success:function(data) {
+				alert("删除成功！");
+				shuaxintype();
+				spinnerend();
+			}
+		});
 	}
-});
 }
 
 
@@ -1032,21 +1068,24 @@ function deleteRebyid(obj){
 	var resource_id=obj;
 	var url1=url+'/deleteRebyidAction';
 	var rt_name=$("#rttype").html();
-	if(confirm("是否确定删除？"))$.ajax({
-		type:'post',
-		datetype:'html',
-		url:url1,
-		cache:false,
-		data:{
-			"resource_id":resource_id,	
-		}, 
-		success:function(data) {
-		spinnerstart();
-		alert("删除成功！");
-		window.location.reload();
-		document.getElementById("rttype").innerHTML=rt_name;
+	spinnerstart();
+	if(confirm("是否确定删除？")){
+		$.ajax({
+			type:'post',
+			datetype:'html',
+			url:url1,
+			cache:false,
+			data:{
+				"resource_id":resource_id,	
+			}, 
+			success:function(data) {
+				alert("删除成功！");
+				window.location.reload();
+				document.getElementById("rttype").innerHTML=rt_name;
+				spinnerend();
+			}
+		});
 	}
-});
 }
 
 /**
@@ -1057,6 +1096,7 @@ function updateRestype(){
 	var typeinfo=$("#typeinfo1").val();
 	var rt_id = $("#typeid1").html();
 	var url1 = url + "/updateRestype";
+	spinnerstart();
 	$.ajax({
 		type:'post',
 		datetype:'html',
@@ -1071,9 +1111,11 @@ function updateRestype(){
 			alert("操作成功！！");
 			$("#modal-container-184111").modal("hide");
 			shuaxintype();
+			spinnerend();
 		},
 		error:function(data) {
 			alert("操作失败，请刷新后重新操作！！");
+			spinnerend();
 		}
 	});
 }
@@ -1098,9 +1140,11 @@ function  addRtype(){
 			alert("增加成功！");
 			$("#modal-container-184709").modal("hide");
 			shuaxintype();
+			spinnerend();
 		},
 		error:function(data) {
 			alert("操作失败，请刷新后重新操作！！");
+			spinnerend();
 		}
 	});
 }
@@ -1109,6 +1153,7 @@ function findrt(obj){
 	//alert(obj);
 	var rt_id=obj;
 	var url1=url+'/findrtbyid';
+	spinnerstart();
 	$.ajax({
 		type:'post',
 		datetype:'html',
@@ -1122,9 +1167,11 @@ function findrt(obj){
 			$("#typename1").val(str.rt_name);
 			$("#typeinfo1").html(str.rt_remark);
 			$("#typeid1").html(rt_id);
+			spinnerend();
 		},
 		error:function(data) {
 			alert("操作失败，请刷新后重新操作！！");
+			spinnerend();
 		}
 	});
 }
@@ -1132,6 +1179,7 @@ function findrt(obj){
 //对资源库类型进行刷新
 function shuaxintype(){
 	var url1=url+'/refreshtype';
+	spinnerstart();
 	$.ajax({
 		type:'post',
 		datetype:'html',
@@ -1166,9 +1214,11 @@ function shuaxintype(){
 				document.getElementById('rtbody').innerHTML=thisstr;
 				
 			}
+			spinnerend();
 		},
 		error:function(data) {
 			alert("操作失败，请刷新后重新操作！！");
+			spinnerend();
 		}
 	});
 }
@@ -1776,35 +1826,59 @@ function shuaxinproject(){
 		data:{
 		}, 
 		success:function(data) {			
-		var str = eval("("+data+")");
-		if(str.isempty==false){
-		var thisstr="";			
-		$.each(str.jsona, function() {
-			var tr1='<td><a id="#modal-container-72251" href="javascript:void(0);" data-toggle="modal" style="text-decoration: none;">'+this.project_name+'</a></td>';      
-			var tr2='<td>'+this.project_principal+'</td>';
-			var tr3='<td>'+this.section_name+'</td>';
-			var tr4='<td><a href="downloadpro?filename=('+this.project_file+')"  style="text-decoration:none;" >下载</a></td>';
-			var tr5='<td>'+this.project_uptime+'</td>';			
-			var tr7= '<td><a href="javascript:void(0);" onclick="findpro('+this.project_id+')" style="text-decoration: none;">';
-			var tr8= '<img src="img/edit.png"  data-toggle="tooltip" data-placement="bottom" title="编辑"/></a></td></tr>';		
-			thisstr = thisstr+tr1+tr2+tr3+tr4+tr5+tr7+tr8;
-			document.getElementById('probody01').innerHTML=thisstr;		
-			});
-			
-		}else{
-			var thisstr = "";
-			var tr1 = "<td></td>";
-			var tr2 = "<td>暂无信息...</td>";
-			var tr3 = "<td></td>";
-			var tr4 = "<td></td>";		
-			thisstr = thisstr +  + tr1 + tr2 + tr3 + tr4 ;
-			document.getElementById('probody01').innerHTML=thisstr;			
+			var str = eval("("+data+")");
+			if(str.isempty==false){
+				var thisstr="";			
+				$.each(str.jsona, function() {
+					var tr1='<td><a id="#modal-container-72251" href="javascript:void(0);" data-toggle="modal" style="text-decoration: none;">'+this.project_name+'</a></td>';      
+					var tr2='<td>'+this.project_principal+'</td>';
+					var tr3='<td>'+this.section_name+'</td>';
+					var tr4='<td><a href="javascript:void(0)"  style="text-decoration:none;" >下载</a></td>';
+					var tr5='<td>'+this.project_uptime+'</td>';			
+					var tr7= '<td><a href="javascript:void(0);" onclick="findpro('+this.project_id+')" style="text-decoration: none;" data-target="#modal-container-723" data-toggle="modal">';
+					var tr8= '<img src="img/edit.png"  data-toggle="tooltip" data-placement="bottom" title="编辑"/></a>&nbsp;&nbsp;<a href="javascript:void(0);" onclick="deleteProject('+this.project_id+')">'
+                        +'<img src="img/del.png"  data-toggle="tooltip" data-placement="bottom" title="删除"/></a</td></tr>';		
+					thisstr = thisstr+tr1+tr2+tr3+tr4+tr5+tr7+tr8;
+					document.getElementById('probody').innerHTML=thisstr;		
+					});
+				
+			}else{
+				var thisstr = "";
+				var tr1 = "<td></td>";
+				var tr2 = "<td>暂无信息...</td>";
+				var tr3 = "<td></td>";
+				var tr4 = "<td></td>";		
+				thisstr = thisstr +  + tr1 + tr2 + tr3 + tr4 ;
+				document.getElementById('probody').innerHTML=thisstr;			
+			}
+		},
+		error:function(data) {
+			alert("操作失败，请刷新后重新操作！！");
 		}
-},
-	error:function(data) {
-		alert("操作失败，请刷新后重新操作！！");
+	});	
+}
+
+//删除项目的方法
+function deleteProject(id){
+	url = url+'/deleteProject';
+	if(confirm("是否确定删除？")){
+		$.ajax({
+			type:'post',
+			datetype:'html',
+			url:url,
+			cache:false,
+			data:{
+				"project_id":id
+			}, 
+			success:function(data) {
+				alert("操作成功！！")
+				shuaxinproject()
+			},
+			error:function(data) {
+				alert("操作失败，请刷新后重新操作！！");
+			}
+		});	
 	}
-});	
 }
 
 

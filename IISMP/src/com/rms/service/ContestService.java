@@ -30,5 +30,11 @@ public interface ContestService {
 	public abstract void upproject(Project p);
 	//查看所有项目
 	public abstract List<Project> findAllP1();
+	
+	/**
+	 * 删除项目的方法
+	 * @param project_id
+	 */
+	public abstract void deleteProject(int project_id);
 
 }

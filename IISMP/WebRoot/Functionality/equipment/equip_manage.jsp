@@ -145,7 +145,6 @@ Page p = (Page)request.getAttribute("pageinfo");
 			<table  class="table table-hover" style="font-size: 13px;">
 				<thead>
 					<tr>
-					    <th></th>	   
 						<th>设备名称</th>
 						<th>购买时间</th>
 						<th>设备价格</th>
@@ -163,10 +162,18 @@ Page p = (Page)request.getAttribute("pageinfo");
 				    	Equipment_Info e=einfo.get(i);
 				  		  %>
 					<tr>
-					
-					  <td><a href="javascript:void(0);" style="text-decoration: none;">
-					      <a id="modal-722544" href="javascript:void(0);" onclick="chuanid(<%=e.getE_id()%>);"data-toggle="modal" style="text-decoration: none;">
-					        <img id="eimg" src="<%=e.getE_image()%>" class="photo" data-toggle="tooltip" data-placement="bottom" title="上传和修改图片" style="width:80px;;height:50px;border-radius:10%;border:3px dotted #ccc;"></a></a></td>
+					<%-- 
+					  	<td>
+					  		<a href="javascript:void(0);" style="text-decoration: none;">
+					      	<a id="modal-722544" href="javascript:void(0);" onclick="chuanid(<%=e.getE_id()%>);"data-toggle="modal" style="text-decoration: none;">
+					        <img id="eimg" src="<%=e.getE_image()%>" class="photo" data-toggle="tooltip" data-placement="bottom" title="上传和修改图片" style="width:80px;;height:50px;border-radius:10%;border:3px dotted #ccc;"></a></a>
+					    </td> --%>
+					    
+					 <%--    <td>
+					  		<a href="javascript:void(0);" style="text-decoration: none;" id="modal-722544" onclick="chuanid(<%=e.getE_id()%>);" data-toggle="modal">
+					        	<img id="eimg" src="<%=e.getE_image()%>" title="上传和修改图片" >
+					        </a>
+					    </td> --%>
 					    <td>
 					      <a href="javascript:void(0);"><%=e.getE_name() %></a>      
 					    </td>
@@ -177,7 +184,17 @@ Page p = (Page)request.getAttribute("pageinfo");
 						<td class="p13-999"><%=e.getE_price() %></td>
 						<td class="p13-999"><%=e.getE_purchaser() %></td>
 						<td><%=e.getE_principal() %></td>
-						<td class="p13-999"><%=e.getE_checktime() %></td>
+						<td class="p13-999">
+						<%
+						if(e.getE_checktime()==null){
+						%>
+							~
+						<%
+						}else{
+						%>
+							<%=e.getE_checktime() %>
+						<%} %>
+						</td>
 						<td>
 						   <a href="javascript:void(0);" onclick="editEquips(<%=e.getE_id() %>)" data-toggle="modal" data-target="#modal-container-722545">
 						     <img src="img/edit.png"  data-toggle="tooltip" data-placement="bottom" title="编辑"/></a>
@@ -405,9 +422,9 @@ Page p = (Page)request.getAttribute("pageinfo");
 				  
 					   <form class="form-horizontal" role="form"> 
 						  <div class="form-group">
-						     <label for="firstname" class="col-sm-2 control-label">设备型号：</label>
+						     <label for="firstname" class="col-sm-2 control-label">设备名称：</label>
 						     <div class="col-sm-8"	>
-						       <input type="text" class="form-control input-sm" id="epattern" style="width:49%;">
+						       <input type="text" class="form-control input-sm" id="edit_name" style="width:49%;">
 						     </div>
 						  </div>
 						  <div class="form-group">
@@ -418,7 +435,7 @@ Page p = (Page)request.getAttribute("pageinfo");
 						    <script type="text/javascript">
 							    var picker = new Pikaday(
 							    {
-							        field: document.getElementById('ebuytime'),
+							        field: document.getElementById('einfobuytime'),
 							        firstDay: 1,
 							        minDate: new Date('2010-01-01'),
 							        maxDate: new Date('2020-12-31'),
@@ -435,13 +452,13 @@ Page p = (Page)request.getAttribute("pageinfo");
 							 <div class="form-group">
 							    <label class="col-sm-2 control-label">购买人：</label>
 							    <div class="col-sm-8">
-							       <input type="text" class="form-control input-sm" 	style="width:49%;"	id="epurchaser"  >
+							       <input type="text" class="form-control input-sm" style="width:49%;"	id="editPurchaser"  >
 							    </div>
 							 </div>
 							 <div class="form-group">
 							    <label class="col-sm-2 control-label">负责人：</label>
 							    <div class="col-sm-4">
-							       <input type="text" class="form-control input-sm" style="width:106%;"	id="kkkk">
+							       <input type="text" class="form-control input-sm" style="width:106%;"	id="eHeadPerson">
 							    </div>										    
 							    <div class="col-sm-1">
 							       <button type="button" class="btn btn-info btn-xs" id="aa" onclick="showtreeview()" style="margin-top:4px;">更换</button>

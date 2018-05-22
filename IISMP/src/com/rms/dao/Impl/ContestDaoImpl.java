@@ -93,4 +93,13 @@ public class ContestDaoImpl extends BaseDao implements	ContestDao{
 		return an;
 	}
 
+	//删除项目的方法
+	public void deleteProject(int project_id) {
+		List<Project> an = this.findPbyid(project_id);
+		if(an!=null){
+			Project project = an.get(0);
+			hibernateTemplate.delete(project);
+		}
+	}
+
 }

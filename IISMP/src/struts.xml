@@ -518,6 +518,9 @@
         
         <!-- 修改项目-->
         <action name="saveProject"	class="contestAction" method="saveProject"></action>
+        
+        <!-- 删除项目 -->
+       	<action name="deleteProject" class="contestAction" method="deleteProject"></action>
        
         <!-- 根据id查看项目-->
         <action name="findProByid"	class="contestAction"	method="findProByid"></action>
@@ -528,7 +531,8 @@
         
        <!-- 修改比赛图片-->
         <action name="updateconimage"	class="contestAction" method="updateconimage">
-        <result name="success">/Functionality/contest/cont_edit.jsp</result></action>
+        	<result name="success">/Functionality/contest/cont_edit.jsp</result>
+        </action>
         
         <!--刷新项目信息  -->
         <action name="refreshproject" class="contestAction" method="refreshproject"></action>

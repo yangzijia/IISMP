@@ -113,10 +113,16 @@ List<Section> section=(List<Section>)session.getAttribute("section");
 								<td><a href="javascript:void(0);"  onclick="findpByid(<%=pr.getProject_id()%>)"data-toggle="modal" data-target="#modal-container-72251" ><%=pr.getProject_name() %></td>
 								<td class="p13-999"><%=pr.getProject_principal() %></td>
 								<td><%=pr.getSection_name() %></td>	
-								<td><a href="downloadpro?filename=<%=pr.getProject_file()%>"  style="text-decoration:none;" >下载</a></td>
+								<td><a href="javascript:void(0)"  style="text-decoration:none;" >下载</a></td>
+								<!-- downloadpro?filename=<%=pr.getProject_file()%> -->
 								<td class="p13-999"><%=pr.getProject_uptime() %></td>
 								<td><a href="javascript:void(0);"  onclick="findpro(<%=pr.getProject_id()%>)" data-toggle="modal" data-target="#modal-container-723"  style="text-decoration:none;">
-								    <img src="img/edit.png"  data-toggle="tooltip"  data-placement="bottom" title="编辑"/></a></td>	
+								    <img src="img/edit.png"  data-toggle="tooltip"  data-placement="bottom" title="编辑"/></a>
+								<a href="javascript:void(0);" onclick="deleteProject(<%=pr.getProject_id() %>)">
+                             <img src="img/del.png"  data-toggle="tooltip" data-placement="bottom" title="删除"/></a>    
+								
+								</td>	
+								    
 								    
 							</tr>
 							<%-- <span style="display:none;" id="proid"><%=pr.getProject_id()%></span> --%>

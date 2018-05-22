@@ -57,7 +57,8 @@ if(memberinfo.getM_username()==null){
 				<a href="findallassesschartinfo" lang="4">考评</a>
 			</li>
 			<li>
-				<a href="ViewequipAction" lang="5">设备</a>
+				<!-- <a href="ViewequipAction" lang="5">设备</a> -->
+				<a href="ShowequipAction" lang="5">设备</a>
 			</li>
 			<li>
 				<a href="ShowContestAction" lang="6">比赛</a>

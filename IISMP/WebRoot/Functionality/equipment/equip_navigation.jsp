@@ -11,8 +11,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="p16">
 		  <ul>
 			
-		   <a href="ViewequipAction" style="text-decoration: none;"><li class="bg"><img src="img/eqiup.png" style="width:18px;height:16px;margin-top:-2px;">&nbsp;&nbsp;全部设备</li></a>
-		   <a href="ShowequipAction" style="text-decoration: none;"><li class="bg"><img src="img/atg.png" style="width:18px;height:17px;margin-top:-2px;">&nbsp;&nbsp;设备管理</li></a>
+<!-- 		   <a href="ViewequipAction" style="text-decoration: none;"><li class="bg"><img src="img/eqiup.png" style="width:18px;height:16px;margin-top:-2px;">&nbsp;&nbsp;全部设备</li></a> -->
+		    <a href="ShowequipAction" style="text-decoration: none;"><li class="bg"><img src="img/eqiup.png" style="width:18px;height:16px;margin-top:-2px;">&nbsp;&nbsp;全部设备</li></a>
+		   <a href="javascript:void(0)" style="text-decoration: none;"><li class="bg"><img src="img/atg.png" style="width:18px;height:17px;margin-top:-2px;">&nbsp;&nbsp;管理使用登记</li></a>
 
 		  </ul>
 		   <br>

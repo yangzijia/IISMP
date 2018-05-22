@@ -315,23 +315,20 @@ public class EquipmentAction extends BaseAction{
 	 * @data 2016-10-21
 	 */
 	public void save_equipinfo() throws Exception {
-		/*HttpServletResponse response = ServletActionContext.getResponse();
-		PrintWriter out = response.getWriter();	*/
 		String time=DateUtil.getNowStrDate();
 		System.out.println(time);
 		List<Equipment_Info> ement=equipmentService.findEbyid(e_id);
 		if(ement!=null&&ement.size()>0){
-		Equipment_Info e=ement.get(0);	
-		e.setE_pattern(e_pattern);
-		e.setE_purchaser(e_purchaser);
-		e.setE_checktime(e_checktime);
-		e.setE_buytime(e_buytime);
-		e.setE_principal(e_principal);
-		e.setE_precautions(e_precautions);
-		e.setE_checktime(time);
-		equipmentService.update(e);	
-			}
+			Equipment_Info e=ement.get(0);	
+			e.setE_name(e_name);
+			e.setE_purchaser(e_purchaser);
+			e.setE_buytime(e_buytime);
+			e.setE_principal(e_principal);
+			e.setE_precautions(e_precautions);
+			e.setE_checktime(time);
+			equipmentService.update(e);	
 		}
+	}
 	
 	public static int id;
 	public void chuanID() throws IOException{

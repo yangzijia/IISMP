@@ -30,6 +30,8 @@ public interface ContestDao {
 	public abstract void upproject(Project p);
 	//查看所有项目
 	public abstract List<Project> findAllP1();
+	
+	public abstract void deleteProject(int project_id);
 
 	
 

@@ -246,9 +246,6 @@ public class ContestAction extends BaseAction{
 	
 	//保存比赛编辑信息
 	public void SaveCon() throws Exception{
-		/*
-		HttpServletResponse response = ServletActionContext.getResponse();
-		PrintWriter out = response.getWriter();*/
 		List<Contest> contest=contestService.findCbyid(contest_id);
 		if(contest!=null&&contest.size()>0){
 			Contest c=contest.get(0);	
@@ -259,11 +256,13 @@ public class ContestAction extends BaseAction{
 			c.setContest_place(contest_place);
 			c.setContest_time(contest_time);
 			c.setContest_experience(contest_experience);
+			c.setContets_url(contets_url);
+			c.setContest_title(contest_title);
 		
 			contestService.updateContest(c);
+		}
+			
 	}
-		
-}
 	//增加比赛 
 	public void addContest()throws Exception{
 		/*request = ServletActionContext.getRequest();
@@ -276,7 +275,9 @@ public class ContestAction extends BaseAction{
 		con.setContets_url(contets_url);
 		con.setProject_member(project_member);
 		con.setProject_name(project_name);
-		con.setContest_title(contest_title);		
+		con.setContest_title(contest_title);	
+		con.setProject_awads(project_awads);
+		con.setProject_info(project_info);
 		
 		contestService.addcon(con);
 		
@@ -311,14 +312,14 @@ public class ContestAction extends BaseAction{
 		List<Project> project=contestService.findPbyid(project_id);
 		if(project!=null&&project.size()>0){
 			Project p=project.get(0);	
-		json.put("project_name",p.getProject_name() );
-		json.put("project_info", p.getProject_info());
-		json.put("project_awards", p.getProject_awads());
-		json.put("contest_experience", p.getContest_experience());
-		json.put("project_section", p.getSection_name());
-		out.print(json);
-		out.flush();
-		out.close();
+			json.put("project_name",p.getProject_name() );
+			json.put("project_info", p.getProject_info());
+			json.put("project_awards", p.getProject_awads());
+			json.put("contest_experience", p.getContest_experience());
+			json.put("project_section", p.getSection_name());
+			out.print(json);
+			out.flush();
+			out.close();
 		}
 	}
 	
@@ -340,6 +341,14 @@ public class ContestAction extends BaseAction{
 		
 	}
 	
+	/**
+	 * 删除项目的方法
+	 * @throws Exception
+	 */
+	public void deleteProject() throws Exception{
+		contestService.deleteProject(project_id);
+	}
+	
 	//对项目编辑信息进行保存
 	public void saveProject()throws Exception{
 		/*HttpServletResponse response = ServletActionContext.getResponse();
@@ -354,8 +363,8 @@ public class ContestAction extends BaseAction{
 			p.setSection_name(project_section);
 			p.setProject_uptime(time);
 			contestService.upproject(p);
+		}
 	}
-}
 	/**
 	 * 上传文件的方法
 	 */
@@ -411,10 +420,14 @@ public class ContestAction extends BaseAction{
 		myFileFileName = new String(myFileFileName);
 		newfilename = "contestimage_" + aa + myFileFileName;
 		 //定义上传路径  
-	    String path = System.getProperty("user.dir").replace("bin", "webapps");
-	    path = path.replaceAll("\\\\", "/")+"/IISMP//contestimage/";
+	    //String path = System.getProperty("user.dir").replace("bin", "webapps");
+	    //path = path.replaceAll("\\\\", "/")+"/IISMP//contestimage/";
 		//String path = "D:\\Program Files\\Apache Software Foundation\\Tomcat 7.0\\webapps";
 		//String path="D:/Tomcat 7.0/webapps/IISMP/userpicture/";
+	    //String path = new File(this.getClass().getResource("/").getPath())
+	      //      .getParentFile().getParentFile().getParentFile().getCanonicalPath();
+		String path = request.getSession().getServletContext().getRealPath("/");
+		path = path.replaceAll("\\\\", "/")+"contestimage/";
 		System.out.println("11111111111==="+path);
 		// 设置目标文件
 		File toFile = new File(path, newfilename);

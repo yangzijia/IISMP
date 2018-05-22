@@ -35,11 +35,11 @@ boolean a=(error!=null);
     <link rel="Shortcut icon" href="img/favicon.ico">   
     
     <script type="text/javascript">
-    	if (!(navigator.userAgent.indexOf('Firefox') >= 0 || navigator.userAgent.indexOf('Chrome') >= 0)){
+    	/* if (!(navigator.userAgent.indexOf('Firefox') >= 0 || navigator.userAgent.indexOf('Chrome') >= 0)){
     		if(confirm("您的浏览器不兼容本系统，推荐使用火狐浏览器，\n\n点击“确定”到下载界面")){	
 			url1 = 'http://www.firefox.com.cn/download/';
 			window.open ('url1');
-		}
+		} */
        // if(window.top!==window.self){window.top.location=window.location};
 		var a=<%=a%>;
 		if(a){

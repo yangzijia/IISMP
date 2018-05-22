@@ -97,19 +97,29 @@ List<Contest> contest=(List<Contest>)session.getAttribute("contest");
 					int i=0;
 			    	for(;i<contest.size();i++){
 					Contest c=contest.get(i);	
-				%>
+				%>	
 				
 					<div class="col-md-6">
 						<div class="thumbnail">
-							<a href="<%=c.getContets_url() %>" target="_blank"><img  src="<%=c.getC_image() %>" style="height: 220px;width: 400px;"></a>
+							<a href="<%=c.getContets_url() %>" target="_blank"><img  src="
+							<%
+							if(c.getC_image()==null){
+							%>
+							contestimage/kong.jpg
+							<%
+							}else{
+							%>
+							<%=c.getC_image() %>
+							<%} %>
+							" style="height: 220px;width: 400px;"></a>
 							<div class="caption">
 								<h4>
 									<%=c.getContest_title()%>
-									<span class="p13-999 ren"><%=c.getProject_section()%></span>
+									<span class="p13-999 ren"><%=c.getProject_member()%></span>
 								</h4>
 								<p>
 									<h5 class="p13-999">
-									<%=c.getContest_info() %>
+									<%=c.getProject_info() %>
 								    </h5>
 								</p>
 								<p>

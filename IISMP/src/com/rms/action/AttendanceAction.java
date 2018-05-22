@@ -2015,7 +2015,7 @@ public class AttendanceAction extends BaseAction{
 					}
 					ks.setChuliren(chuliren);
 					ks.setDatetime(au.getDatetime());
-					ks.setMorenbanci(au.getAttendanceshift());
+					ks.setMorenbanci(check_in+"~"+check_out);
 					ks.setRemark(au.getRemark());
 					ks.setState(au.getAfterstate());
 					MembershipInfo msi1 = systemsetService.findmemberinfoByid(au.getApplyuser_id());

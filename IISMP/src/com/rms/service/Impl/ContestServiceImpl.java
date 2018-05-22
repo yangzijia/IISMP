@@ -74,4 +74,10 @@ public class ContestServiceImpl extends BaseService implements ContestService{
 		return this.contestDao.findAllP1();
 	}
 
+	// 删除项目的方法
+	public void deleteProject(int project_id) {
+		this.contestDao.deleteProject(project_id);
+		
+	}
+
 }

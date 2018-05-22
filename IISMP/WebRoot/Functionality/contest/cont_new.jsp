@@ -154,46 +154,25 @@ List<Project> project=(List<Project>)session.getAttribute("project");
 						       <input type="text" class="form-control input-sm" id="curl" placeholder="请输入大赛网址......" style="width:49%;">
 						     </div>
 						  </div> 
-						  <!-- <div class="form-group">
-						     <label for="firstname" class="col-sm-2 control-label">上传图片：</label>
+						  <div class="form-group">
+						     <label for="firstname" class="col-sm-2 control-label">项目介绍：</label>
 						     <div class="col-sm-9">
-						       <input id="file-0a" class="file"  data-min-file-count="1" type="file"> 
+						       <textarea class="form-control" rows="3" id="projectInfo"></textarea>
 						     </div>
-						  </div>  -->
+						  </div>
+						  <div class="form-group">
+						     <label for="firstname" class="col-sm-2 control-label">取得成绩：</label>
+						     <div class="col-sm-9">
+						       <textarea class="form-control" rows="3" id="p_awads"></textarea>
+						     </div>
+						  </div>
 						  <div class="form-group">
 						     <label for="firstname" class="col-sm-2 control-label">经验心得：</label>
 						     <div class="col-sm-9">
-						       <textarea class="form-control" rows="3" id="cjingyan">......</textarea>
+						       <textarea class="form-control" rows="3" id="cjingyan"></textarea>
 						     </div>
 						  </div>						  
 						</form>
-						<!-- 增添比赛结束 -->
-						
-				         <!-- 上传文件开始 -->							
-						   <!--<div class="form-horizontal" role="form">
-						    <div class="form-group">
-							   <label for="firstname" class="col-sm-2 control-label">上传文件：</label>
-							   <div class="col-sm-9" id="checkbox">
-								   <label class="checkbox-inline">
-									 <input type="radio" name="optionsRadiosinline" id="optionsRadios3" onclick="show()" value="option1"> 是
-								   </label>
-								   <label class="checkbox-inline">
-									 <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2" checked> 否
-								   </label>
-							   </div>
-							  <div class="col-sm-9" id="upload">
-							   <form enctype="multipart/form-data">
-								  <div class="form-group" style="margin-left:0;"> 
-						           <span style="float:left;">
-						             <input id="file-0a" class="file"  data-min-file-count="1" type="file"> 
-						           </span>
-								   <span style="float:left;margin-top:3px;">
-								     &nbsp;&nbsp;&nbsp;&nbsp;
-						            <button type="reset" class="btn btn-info btn-xs" style="background-color:#F1F1F1;color:#7D7D7D;border-color:#CCC;">重置</button>
-	                         	   </span>			     
-  							      </div>
-							   </form> 
-							  </div>  -->
 						      <br />
 							  <div class="col-sm-2"></div> 
 							  <div class="col-sm-6">
@@ -201,9 +180,12 @@ List<Project> project=(List<Project>)session.getAttribute("project");
 							    &nbsp; &nbsp;   
 					            <button type="button" class="btn btn-default"  onclick="quxiao()" >取消</button> 	  
 		                      </div> 
-		                      <div class="col-sm-3"></div> 					
+		                      <div class="col-sm-3"></div> 		
+		                      <br />
+				           <br />			
 							</div>
-				           </div>									
+				           </div>	
+				           								
 						  <!-- 上传文件结束 -->
 		     	      </div> 
 					</div>	
@@ -240,8 +222,8 @@ List<Project> project=(List<Project>)session.getAttribute("project");
 							<ul class="box-list" id="letto" style="margin-bottom:0;">
 							  <li class="list-group-item" >
 							     <label class="del" style="margin-top:7px;">
-							       <input type="checkbox" name="kkk" id="p_member" value="<%=m.getM_username()%>" onclick="test1('<%=m.getM_username()%>')"/>
-							       <%=m.getM_username()%>
+							       <input type="checkbox" name="kkk" id="p_member" value="<%=m.getM_truename()%>" onclick="test1('<%=m.getM_truename()%>')"/>
+							       <%=m.getM_truename()%>
 							     </label>   
 							  </li> 
 							</ul>
