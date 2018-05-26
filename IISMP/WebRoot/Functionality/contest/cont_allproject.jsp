@@ -85,7 +85,7 @@ List<Section> section=(List<Section>)session.getAttribute("section");
 					       参赛项目
 					  <span style="float:right;">
 					     <button type="button" class="btn btn-info btn-xs" onclick="location.href='Functionality/contest/cont_index.jsp'">返回</button>
-					     <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal-container-184707">添加项目</button>
+					     <button type="button"  <%if(memberinfo.getRole_num()==4){ %>disabled="disabled"<%} %> class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal-container-184707">添加项目</button>
 					  </span>
 					</h4>
 					<hr style="margin-top: 10px; height:1px;border:none;border-top:2px dotted ;">
@@ -99,7 +99,8 @@ List<Section> section=(List<Section>)session.getAttribute("section");
 								<th>组名</th>
 								<th>项目资源</th>
 								<th>更新时间</th>
-								<th>操作</th>
+								 <%if(memberinfo.getRole_num()!=4){ %><th>操作</th><%} %>
+								
 							</tr>
 						 </thead>
 						 <tbody id="probody">
@@ -116,12 +117,17 @@ List<Section> section=(List<Section>)session.getAttribute("section");
 								<td><a href="javascript:void(0)"  style="text-decoration:none;" >下载</a></td>
 								<!-- downloadpro?filename=<%=pr.getProject_file()%> -->
 								<td class="p13-999"><%=pr.getProject_uptime() %></td>
+								
+								<%if(memberinfo.getRole_num()!=4){ %>
 								<td><a href="javascript:void(0);"  onclick="findpro(<%=pr.getProject_id()%>)" data-toggle="modal" data-target="#modal-container-723"  style="text-decoration:none;">
 								    <img src="img/edit.png"  data-toggle="tooltip"  data-placement="bottom" title="编辑"/></a>
 								<a href="javascript:void(0);" onclick="deleteProject(<%=pr.getProject_id() %>)">
                              <img src="img/del.png"  data-toggle="tooltip" data-placement="bottom" title="删除"/></a>    
 								
 								</td>	
+								<%} %>
+								
+								
 								    
 								    
 							</tr>
@@ -136,8 +142,8 @@ List<Section> section=(List<Section>)session.getAttribute("section");
 									<td></td>
 									<td></td>
 									<td></td>
-									<td></td>
 									
+									<%if(memberinfo.getRole_num()!=4){ %><td></td><%} %>
 									
 								</tr>
 							<%

@@ -22,7 +22,7 @@ if(memberinfo.getM_username()==null){
         </ul> 
       </ul>
       <%
-      if(memberinfo.getRole_num()==1||memberinfo.getRole_num()==2){
+      if(memberinfo.getRole_num()==1||memberinfo.getRole_num()==2 || memberinfo.getRole_num()==3){
       %>
       <ul>
       	<a href="javascript:void(0)" style="text-decoration: none;"><li class="bg"><img src="img/atg.png" style="width:19px;height:19px;">&nbsp;&nbsp;考勤管理</li></a>
@@ -30,8 +30,13 @@ if(memberinfo.getM_username()==null){
       	  <a href="findcheckrecordinfo" style="text-decoration: none;"><li class="bg"><img src="img/dd.png" style="width:13px;height:13px;">&nbsp;&nbsp;考勤记录</li></a>
           <a href="findcheckstatistics" style="text-decoration: none;"><li class="bg"><img src="img/dd.png" style="width:13px;height:13px;">&nbsp;&nbsp;考勤统计</li></a>
           <a href="findallattenexport" style="text-decoration: none;"><li class="bg"><img src="img/dd.png" style="width:13px;height:13px;">&nbsp;&nbsp;考勤导出</li></a>
+          <%
+          if(memberinfo.getRole_num()==1){
+          %>
           <a href="findshiftinfo" style="text-decoration: none;"><li class="bg"><img src="img/dd.png" style="width:13px;height:13px;">&nbsp;&nbsp;班次设置</li></a>
           <a href="finddefaultIP" style="text-decoration: none;"><li class="bg"><img src="img/dd.png" style="width:13px;height:13px;">&nbsp;&nbsp;默认IP</li></a>
+      		<%
+      		}%>
       	</ul>
       </ul>
       <%

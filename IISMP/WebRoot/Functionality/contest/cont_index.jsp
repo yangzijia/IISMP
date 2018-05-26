@@ -131,8 +131,11 @@ List<Contest> contest=(List<Contest>)session.getAttribute("contest");
 					</div>
 						<%
 					}
-				}
+				}else{
 					%>
+					&nbsp;&nbsp;&nbsp;无信息...
+					
+				<%} %>
 			
 				<!-- 缩略图结束 -->
 				
@@ -152,7 +155,7 @@ List<Contest> contest=(List<Contest>)session.getAttribute("contest");
 						  <div class="form-group">
 						     <div class="col-sm-1"></div>
 							 <div class="col-sm-10">
-							   <img alt="300x200" id="cimage" src="img/wusheng.png" style="width:470px;height:150px;"/>
+							   <img id="cimage" src="contestimage/kong.jpg" style="max-width: 170px; max-height: 100px;"/>
 							 </div>
 							 <div class="col-sm-1"></div>
 						  </div>

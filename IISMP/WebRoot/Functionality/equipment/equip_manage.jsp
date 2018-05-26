@@ -135,7 +135,7 @@ Page p = (Page)request.getAttribute("pageinfo");
 			<h4 style="margin-top:10px;">
 				设备管理	
 				<span style="float:right;">
-				  <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal-container-184706">增添设备</button>
+				  <button type="button" <%if(memberinfo.getRole_num()==4){ %>disabled="disabled"<%} %> class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal-container-184706">增添设备</button>
 				</span>
 			</h4>
 			<hr style="margin-top: 10px; height:1px;border:none;border-top:2px dotted;">
@@ -151,7 +151,8 @@ Page p = (Page)request.getAttribute("pageinfo");
 						<th>购买人</th>
 						<th>负责人</th>
 						<th>最新检查时间</th>
-						<th></th>
+						<%if(memberinfo.getRole_num()!=4){ %><th></th><%} %>
+						
 					</tr>
 				</thead>
 			    <tbody id="eqbody">
@@ -181,7 +182,7 @@ Page p = (Page)request.getAttribute("pageinfo");
 						  <%=e.getE_buytime() %>
 						   <!-- <p><a href="javascript:void(0);" class="look" data-toggle="modal" data-target="#modal-container-722">应用事项</a></p> -->
 						</td>
-						<td class="p13-999"><%=e.getE_price() %></td>
+						<td class="p13-999"><%=e.getE_price() %>￥</td>
 						<td class="p13-999"><%=e.getE_purchaser() %></td>
 						<td><%=e.getE_principal() %></td>
 						<td class="p13-999">
@@ -195,6 +196,7 @@ Page p = (Page)request.getAttribute("pageinfo");
 							<%=e.getE_checktime() %>
 						<%} %>
 						</td>
+						<%if(memberinfo.getRole_num()!=4){ %>
 						<td>
 						   <a href="javascript:void(0);" onclick="editEquips(<%=e.getE_id() %>)" data-toggle="modal" data-target="#modal-container-722545">
 						     <img src="img/edit.png"  data-toggle="tooltip" data-placement="bottom" title="编辑"/></a>
@@ -203,6 +205,8 @@ Page p = (Page)request.getAttribute("pageinfo");
 						   <a href="javascript:void(0);" onclick="deleteEquipment(<%=e.getE_id() %>)">
                              <img src="img/del.png"  data-toggle="tooltip" data-placement="bottom" title="删除"/></a>
 						</td>
+						<%} %>
+						
 					</tr>
 					
 					<%
@@ -214,7 +218,10 @@ Page p = (Page)request.getAttribute("pageinfo");
 								<td>暂无信息...</td>
 								<td></td>
 								<td></td>
-								<td></td>	
+								<td></td>
+								<td></td>
+								<td></td>
+								<%if(memberinfo.getRole_num()!=4){ %><td></td><%} %>
 							</tr>
 							
 						<%

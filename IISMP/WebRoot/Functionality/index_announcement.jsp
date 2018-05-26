@@ -68,35 +68,34 @@ List<AnnouncementQuery> announcement= (List<AnnouncementQuery>)session.getAttrib
 						<div style="color:#666666;">
 							<div>
 								<div class="col-md-6 column">
-									<div class="col-md-5 column">
+									<div class="col-md-4 column">
 										<p class="navbar-right">发布时间：</p>
 									</div>
-									<div class="col-md-7 column">
+									<div class="col-md-8 column">
 										<p  class="p13-999"><span id="g_fabushijian"></span></p>
 									</div>
 								</div>
 								<div class="col-md-6 column">
-									<div class="col-md-6 column">
+									<div class="col-md-4 column">
 										<p class="navbar-right">浏览：</p>
 									</div>
-									<div class="col-md-6 column">
+									<div class="col-md-8 column">
 										<p style="color:#999" id="g_liulan"></p>
 									</div>
 								</div>
-								<!-- <div class="col-md-1 column"></div> -->
 								<div class="col-md-6 column">
-									<div class="col-md-5 column">
+									<div class="col-md-4 column">
 										<p class="navbar-right">发布人：</p>
 									</div>
-									<div class="col-md-7 column">
+									<div class="col-md-8 column">
 										<p class="yellow" style="color:#999" id="g_faburen"></p>
 									</div>
 								</div>
 								<div class="col-md-6 column">
-									<div class="col-md-6 column">
+									<div class="col-md-4 column">
 										<p class="navbar-right">类别：</p>
 									</div>
-									<div class="col-md-6 column">
+									<div class="col-md-8 column">
 										<p style="color:#999" id="g_leibie"></p>
 									</div>
 								</div>

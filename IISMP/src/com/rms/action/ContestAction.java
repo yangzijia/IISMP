@@ -336,7 +336,7 @@ public class ContestAction extends BaseAction{
 		pr.setSection_name(project_section);
 		pr.setProject_info(project_info);
 		pr.setProject_uptime(time);
-		pr.setProject_principal(memberinfo.getM_username());
+		pr.setProject_principal(memberinfo.getM_truename());
 		contestService.addproject(pr);
 		
 	}

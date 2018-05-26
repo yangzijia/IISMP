@@ -79,28 +79,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<div style="color:#666666;">
 										<div>
 										<br>
-											<div class="col-md-5 column">
-												<div class="col-md-5 column">
+											<div class="col-md-6 column">
+												<div class="col-md-4 column">
 													<p class="navbar-right">计划时间：</p>
 												</div>
-												<div class="col-md-7 column">
-													<p  class="p13-999"><span id="x_starttime"></span>~<span id="x_lendtime" ></span></p>
+												<div class="col-md-8 column">
+													<p  class="p13-999" style="width: 200px;"><span id="x_starttime"></span>~<span id="x_lendtime" ></span></p>
 												</div>
 											</div>
-											<div class="col-md-5 column">
-												<div class="col-md-6 column">
+											<div class="col-md-6 column">
+												<div class="col-md-4 column">
 													<p class="navbar-right">时长：</p>
 												</div>
-												<div class="col-md-6 column">
+												<div class="col-md-8 column">
 													<p style="color:#999" id="x_ldaylong"></p>
 												</div>
 											</div>
-											<div class="col-md-1 column"></div>
-											<div class="col-md-5 column">
-												<div class="col-md-5 column">
+											<!-- <div class="col-md-1 column"></div> -->
+											<div class="col-md-6 column">
+												<div class="col-md-4 column">
 													<p class="navbar-right">更新时间：</p>
 												</div>
-												<div class="col-md-7 column">
+												<div class="col-md-8 column">
 													<p class="yellow" style="color:#999" id="x_updatetime"></p>
 												</div>
 											</div>

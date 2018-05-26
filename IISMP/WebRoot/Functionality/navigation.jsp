@@ -33,7 +33,7 @@ if(memberinfo.getM_username()==null){
 				<a href="Functionality/attendence/atten_index.jsp"  lang="0">考勤</a>
 			</li>
 			<%
-			if(memberinfo.getM_role().equals("管理员") || memberinfo.getM_role().equals("组长")){
+			if(memberinfo.getRole_num()==1 || memberinfo.getRole_num()==2 || memberinfo.getRole_num()==3){
 			%>
 			<li>
 				<a href="showAnnounceAction" lang="1">公告</a>
@@ -67,7 +67,7 @@ if(memberinfo.getM_username()==null){
 				<a href="ViewApply" lang="7">审批</a>
 			</li> -->
 			<%
-			if(memberinfo.getM_role().equals("管理员") || memberinfo.getM_role().equals("组长")){
+			if(memberinfo.getRole_num()==1 || memberinfo.getRole_num()==2 || memberinfo.getRole_num()==3){
 			%>
 			<li class="dropdown">
 				<a href="findororganizationinfo" lang="8">系统管理</a>

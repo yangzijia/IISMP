@@ -3,6 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 List<Resource_Type> rt=(List<Resource_Type>)session.getAttribute("type");
+MembershipInfo memberinfo = (MembershipInfo)session.getAttribute("memberinfo");
 %>
 <!-- 资源栏 -->
 <div class="col-md-3 column" >
@@ -26,17 +27,18 @@ List<Resource_Type> rt=(List<Resource_Type>)session.getAttribute("type");
 			  <%
                 }
                 } 
-				
+			
               %>  	
-						
-					</ul>
-				
-				<a style="text-decoration: none;" href="showRTaction" >
 					
+				
+			</ul>
+			<%if(memberinfo.getRole_num()!=4){ %>
+				<a style="text-decoration: none;" href="showRTaction" >
 					<li class="bg">
 						<img src="img/atg.png" style="width:18px;height:18px;">&nbsp;&nbsp;资源库管理
 					</li>
 			    </a>
+				<%} %>
 			</ul>
 		</div>
 	</div>

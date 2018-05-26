@@ -140,6 +140,7 @@ String section_names = (String)request.getAttribute("section_names");
 								    <div class="col-sm-6">
 									    <select class="form-control input-sm" id="duty">
 									      <option onclick="javascript:void(0);">管理员</option>
+									      <option onclick="javascript:void(0);">教师</option>
 									      <option onclick="javascript:void(0);">组长</option>
 									      <option onclick="javascript:void(0);">组员</option>
 									    </select>
@@ -222,6 +223,7 @@ String section_names = (String)request.getAttribute("section_names");
 									<ul class="dropdown-menu">
 										<li><a tabindex="-1" href="javascript:void(0)" onclick="findthisrolemember('全部职务');">全部职务</a></li>
 										<li><a tabindex="-1" href="javascript:void(0)" onclick="findthisrolemember('管理员');">管理员</a></li>
+										<li><a tabindex="-1" href="javascript:void(0)" onclick="findthisrolemember('教师');">教师</a></li>
 										<li><a tabindex="-1" href="javascript:void(0)" onclick="findthisrolemember('组长');">组长</a></li>
 										<li><a tabindex="-1" href="javascript:void(0)" onclick="findthisrolemember('组员');">组员</a></li>
 									</ul>
@@ -403,6 +405,7 @@ String section_names = (String)request.getAttribute("section_names");
 								    <div class="col-sm-6">
 									    <select class="form-control input-sm" id="duty1">
 									      <option onclick="javascript:void(0);">管理员</option>
+									      <option onclick="javascript:void(0);">教师</option>
 									      <option onclick="javascript:void(0);">组长</option>
 									      <option onclick="javascript:void(0);">组员</option>
 									    </select>

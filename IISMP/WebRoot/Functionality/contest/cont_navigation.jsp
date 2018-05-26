@@ -2,13 +2,14 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+MembershipInfo memberinfo = (MembershipInfo)session.getAttribute("memberinfo"); 
 %>
 <!-- 比赛左边导航-->
 <div class="col-md-3 column" style="font-size: 16px;">
 	
 	<div class="col-md-12 column" style="-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);border:#EDEFF0 solid;border-width:5px; background-color: #FFFFFF;">
 		<br>
-	 	<button type="button" class="btn btn-default btn-block btn-info" onclick="location.href='Functionality/contest/cont_new.jsp'">+&nbsp;&nbsp;增添比赛</button>
+	 	<button type="button"  <%if(memberinfo.getRole_num()==4){ %>disabled="disabled"<%} %> class="btn btn-default btn-block btn-info" onclick="location.href='Functionality/contest/cont_new.jsp'">+&nbsp;&nbsp;增添比赛</button>
 		<hr>
 	      <ul>
 	         <a href="ShowContestAction" style="text-decoration: none;"><li class="bg"><img src="img/bei.png" style="width:16px;height:17px;margin-top:-2px;">&nbsp;&nbsp;所有比赛</li></a>  	

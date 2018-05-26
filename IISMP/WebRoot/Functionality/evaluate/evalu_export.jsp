@@ -89,8 +89,7 @@ List<AssessExportChart> aecinfo = (List<AssessExportChart>)request.getAttribute(
 						<span>考评表导出</span>
 						<span class="navbar-right" style="margin-right: 5px;">
 						    <button type="button" onclick="flushexportassess();" class="btn btn-info btn-default btn-xs"> 刷&nbsp;新 </button>
-						    <button type="button" onclick="openexportassess();" class="btn btn-info btn-default btn-xs"   data-toggle="modal" data-target="#modalexportassess"> 导&nbsp;出 </button>
-						    
+						    <button type="button" onclick="openexportassess();" <%if(memberinfo.getRole_num()==4){ %>disabled="disabled"<%} %> class="btn btn-info btn-default btn-xs"   data-toggle="modal" data-target="#modalexportassess"> 导&nbsp;出 </button>
 						<!-- 导出开始 -->
 						<div class="modal fade" id="modalexportassess" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-dialog">

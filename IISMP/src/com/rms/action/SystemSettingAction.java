@@ -417,20 +417,17 @@ public class SystemSettingAction extends BaseAction {
 			for(int i=0;i<msi.size();i++){
 				jsona.add(i, msi.get(i));
 			}
-System.out.println("daxiao====="+systemsetService.findMembershipnum(m_duty,sectionnamess));
 			p.setTotalItemNumber(systemsetService.findMembershipnum(m_duty,sectionnamess));
 		}else {
 			p.setTotalItemNumber(1);
 			isempty = true;
 		}
 		
-System.out.println("isempty/*/*/*//*************===="+p.getTotalItemNumber());
 		p.setPageNow(pageNow);
 		p.setPageSize(20);
 		isHasNext = p.isHasNext();
 		isHasPrev = p.isHasPrev();
 		pageCount = p.getpageCount(p.getTotalItemNumber());
-System.out.println("pageCount888888888888==="+pageCount);
 		//转化为json字符串，再次可以打印出查看一下
 		
 		JSONObject json = new JSONObject();
@@ -482,7 +479,6 @@ System.out.println("pageCount888888888888==="+pageCount);
 		isHasNext = p.isHasNext();
 		isHasPrev = p.isHasPrev();
 		pageCount = p.getpageCount(p.getTotalItemNumber());
-System.out.println("pageCount=="+pageCount);	
 		if(pageCount==0){
 			pageCount=1;
 		}
@@ -533,13 +529,15 @@ System.out.println("pageCount=="+pageCount);
 		msi1.setM_qqchat("-");
 		msi1.setM_utpitp("-");
 		msi1.setM_state("启用");
-		int role_num = 0;
+		int role_num = 4;
 		if(member_duty.equals("管理员")){
 			role_num=1;
 		}else if(member_duty.equals("组长")){
+			role_num = 3;
+		}else if(member_duty.equals("教师")){
 			role_num = 2;
 		}else {
-			role_num = 3;
+			role_num = 4;
 		}
 		msi1.setM_userpicture("-");
 		msi1.setRole_num(role_num);
@@ -594,7 +592,7 @@ System.out.println("pageCount=="+pageCount);
 	 * @date 2016-10-22
 	 */
 	public void saveeditmemberinfo() throws Exception {
-		int role_num = 0;
+		int role_num = 4;
 		
 		//根据用户的id查找用户信息
 		MembershipInfo msi1 = systemsetService.findmemberinfoByid(id);
@@ -620,9 +618,11 @@ System.out.println("pageCount=="+pageCount);
 		if(member_duty.equals("管理员")){
 			role_num=1;
 		}else if(member_duty.equals("组长")){
+			role_num = 3;
+		}else if(member_duty.equals("教师")){
 			role_num = 2;
 		}else {
-			role_num = 3;
+			role_num = 4;
 		}
 		msi1.setRole_num(role_num);
 		msi1.setM_userpicture("-");
@@ -796,7 +796,6 @@ System.out.println("pageCount=="+pageCount);
 		//执行上传文件的方法
 		this.uploadSInfoAction();
 		newfilename = new String(newfilename);
-//System.out.println(newfilename);
 		 // 对读取Excel表格标题测试
         InputStream is = new FileInputStream("d:/IISMP/System_manage/"+ newfilename);
 		POIFSFileSystem fs = new POIFSFileSystem(is);
@@ -812,7 +811,6 @@ System.out.println("pageCount=="+pageCount);
         for (int i = 2; i <= rowNum; i++) {
             row = sheet.getRow(i); 
         	String struename = row.getCell((short) 0) + "";
-//System.out.println("struename==="+struename);
         	String ssex = row.getCell((short) 1)+ "";
     		String susername = row.getCell((short) 2) + "";
     		String ssectionname = row.getCell((short) 3) + "";
@@ -897,12 +895,17 @@ System.out.println("pageCount=="+pageCount);
 					mb.setM_truename(struename);
 					mb.setM_username(susername);
 					mb.setM_utpitp("-");
-					int role_num=3;
+					int role_num=4;
 					if(sduty.equals("管理员")){
 						role_num=1;
 					}else if(sduty.equals("组长")){
-						role_num=2;
+						role_num = 3;
+					}else if(sduty.equals("教师")){
+						role_num = 2;
+					}else {
+						role_num = 4;
 					}
+					
 					mb.setRole_num(role_num);
 					mb.setM_userpicture("-");
 					//添加到数库中
@@ -931,11 +934,15 @@ System.out.println("pageCount=="+pageCount);
 					mb.setM_username(susername);
 					mb.setM_utpitp("-");
 					mb.setM_userpicture("-");
-					int role_num=3;
+					int role_num=4;
 					if(sduty.equals("管理员")){
 						role_num=1;
 					}else if(sduty.equals("组长")){
-						role_num=2;
+						role_num = 3;
+					}else if(sduty.equals("教师")){
+						role_num = 2;
+					}else {
+						role_num = 4;
 					}
 					mb.setRole_num(role_num);
 					//添加到数库中
@@ -1131,8 +1138,6 @@ System.out.println("pageCount=="+pageCount);
 		HttpSession session = ServletActionContext.getRequest().getSession();
 		MembershipInfo mi = (MembershipInfo)session.getAttribute("memberinfo");
 		mi.setM_userpicture(pictureSrcInfo);
-System.out.println(pictureSrcInfo);
-System.out.println(pictureSrcInfo.length());
 		systemsetService.updateMemberinfo(mi);
 		JSONObject json = new JSONObject();
 		json.put("infos", "操作成功！！"); 

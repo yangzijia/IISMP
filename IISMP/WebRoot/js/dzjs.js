@@ -684,7 +684,9 @@ function  findCbyid(obj){
 			$("#project_info").html(str.project_info);
 			$("#project_awads").html(str.project_awads);
 			$("#contest_experience").html(str.contest_experience);
-			document.getElementById("cimage").src=str.c_image;
+			if(str.c_image!=null || str.c_image!=undefined){
+				document.getElementById("cimage").src=str.c_image;
+			}
 			spinnerend();
         } 
     });
