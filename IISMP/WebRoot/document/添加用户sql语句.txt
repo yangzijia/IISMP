@@ -1,6 +1,0 @@
-INSERT 
-	INTO
-		MembershipInfo
-		(m_classname, m_email, m_entermiictime, m_password, m_phone, m_qqchat, m_role, m_sectionname, m_sex, m_state, m_truename, m_username, m_userpicture, m_utpitp, role_num) 
-	VALUES
-		('-', '15076321877@qq.com', '2017-06-04', '123456', '15076321877', '-', '管理员', '实验室', '男', '启用', '管理员', 'admin', '-', '-', 1)
